@@ -9,8 +9,9 @@ const app = express(PORT);
 
 app.use(cors())
 app.use(express.json())
-app.use(activoroutes)
 app.use(indexRoutes)
+app.use(activoroutes)
+
 
 app.listen(PORT)
 console.log(`Server is listening on port ${PORT}`);

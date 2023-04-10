@@ -8,3 +8,10 @@ CREATE TABLE activos (
     estado BOOLEAN NOT NULL DEFAULT 0,
     responsable VARCHAR(200),
 );
+
+CREATE TABLE usuarios (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50)NOT NULL
+    fechacreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+);
