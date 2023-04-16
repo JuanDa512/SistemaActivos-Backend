@@ -25,17 +25,18 @@ export const getActivo = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 ;}
-
+    
 export const createActivo = async (req, res) => {
     try {
-        const { nombre_activo, descripcion, valor_compra } = req.body;
+        const { nombre_activo, descripcion, tipo, valor_compra } = req.body;
         console.log(req.body);
         const [result] = await pool.query(
-            "INSERT INTO activos(nombre_activo, descripcion, valor_compra) VALUES (?, ?, ?)",
-            [nombre_activo, descripcion, valor_compra]
+            "INSERT INTO activos(id_tipo_activo, nombre_activo, descripcion, valor_compra) VALUES (?, ?, ?, ?)",
+            [parseInt(tipo), nombre_activo, descripcion, valor_compra]
         );
         res.json({
             id: result.insertId,
+            tipo,
             nombre_activo, 
             descripcion,
             valor_compra,

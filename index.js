@@ -3,14 +3,16 @@ import {PORT} from './config.js';
 import cors from 'cors'
 
 import indexRoutes from './Routes/index.routes.js'
-import activoroutes from './Routes/activos.routes.js'
+import activoRoutes from './Routes/activos.routes.js'
+import tipoRoutes from './Routes/tipos.routes.js'
 
 const app = express(PORT);
 
 app.use(cors())
 app.use(express.json())
 app.use(indexRoutes)
-app.use(activoroutes)
+app.use(activoRoutes)
+app.use(tipoRoutes)
 
 
 app.listen(PORT)
