@@ -3,7 +3,7 @@ import { pool } from "../DataAccess/db.js"
 export const getActivos = async (req, res) => {
     try {
         const [result] = await pool.query(
-            "SELECT activos.id, activos.nombre_activo, activos.descripcion, activos.valor_compra, activos.fecha_compra, responsable.nombre, responsable.apellido, responsable.cargo, tipo_activo.tipo, area.name_area FROM activos, responsable, area, tipo_activo WHERE activos.id_responsable=responsable.id AND activos.id_area=area.id AND activos.id_tipo_activo=tipo_activo.id"
+            "SELECT activos.id, activos.id_rfid, activos.nombre_activo, activos.descripcion, activos.valor_compra, activos.fecha_compra, responsable.nombre, responsable.apellido, responsable.cargo, tipo_activo.tipo, area.name_area FROM activos, responsable, area, tipo_activo WHERE activos.id_responsable=responsable.id AND activos.id_area=area.id AND activos.id_tipo_activo=tipo_activo.id"
         );
         res.json(result)
     } catch (error) {
@@ -47,6 +47,7 @@ export const createActivo = async (req, res) => {
 };
 
 export const updateActivo = async (req, res) => {
+    console.log(req.body)
     try {
         const [result] = await pool.query(
             "UPDATE activos SET ? WHERE id = ?", [

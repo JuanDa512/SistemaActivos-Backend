@@ -5,6 +5,7 @@ import cors from 'cors'
 import indexRoutes from './Routes/index.routes.js'
 import activoRoutes from './Routes/activos.routes.js'
 import tipoRoutes from './Routes/tipos.routes.js'
+import areaRoutes from './Routes/areas.routes.js'
 
 const app = express(PORT);
 
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(indexRoutes)
 app.use(activoRoutes)
 app.use(tipoRoutes)
+app.use(areaRoutes)
 
 
 app.listen(PORT)
