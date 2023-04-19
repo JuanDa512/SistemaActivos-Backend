@@ -6,6 +6,7 @@ import indexRoutes from './Routes/index.routes.js'
 import activoRoutes from './Routes/activos.routes.js'
 import tipoRoutes from './Routes/tipos.routes.js'
 import areaRoutes from './Routes/areas.routes.js'
+import personalRoutes from './Routes/personal.routes.js'
 
 const app = express(PORT);
 
@@ -15,6 +16,7 @@ app.use(indexRoutes)
 app.use(activoRoutes)
 app.use(tipoRoutes)
 app.use(areaRoutes)
+app.use(personalRoutes)
 
 
 app.listen(PORT)
