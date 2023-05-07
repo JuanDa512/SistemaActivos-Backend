@@ -9,6 +9,8 @@ import areaRoutes from './Routes/areas.routes.js'
 import personalRoutes from './Routes/personal.routes.js'
 import userRoutes from './Routes/users.routes.js'
 
+import monitoreoRoutes from './Routes/monitoreo.routes.js'
+
 const app = express(PORT);
 
 app.use(cors())
@@ -19,6 +21,7 @@ app.use(tipoRoutes)
 app.use(areaRoutes)
 app.use(personalRoutes)
 app.use(userRoutes)
+app.use(monitoreoRoutes)
 
 
 app.listen(PORT)

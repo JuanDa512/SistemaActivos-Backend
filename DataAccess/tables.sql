@@ -41,3 +41,17 @@ CREATE TABLE usuarios (
     password VARCHAR(50)NOT NULL,
     fechacreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE monitoreo (
+    id_monitoreo INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_area_lectura INTEGER NOT NULL default 1,
+    fecha_lectura TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_area_lectura) REFERENCES area(id)
+);
+
+CREATE TABLE lectura (
+    id_lectura INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_monitoreo INTEGER NOT NULL DEFAULT 1,
+    tags VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_monitoreo) REFERENCES monitoreo(id_monitoreo)
+);
