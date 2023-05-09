@@ -24,7 +24,7 @@ export const getActivo = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
-;}
+}
     
 export const createActivo = async (req, res) => {
     try {
@@ -78,3 +78,25 @@ export const deleteActivo = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+
+export const getActivoArea = async (req, res) => {
+    try {
+        const [result] = await pool.query(
+            "SELECT activos.id, activos.id_area, area.name_area, activos.id_rfid, activos.nombre_activo, responsable.nombre, responsable.apellido, responsable.cargo FROM activos, responsable, area WHERE activos.id_responsable = responsable.id AND activos.id_area = area.id AND activos.id_area = ?", [req.params.id]
+        );
+        res.json(result);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+export const getActivoRfid = async (req, res) => {
+    try {
+        const [result] = await pool.query(
+            "SELECT activos.id, activos.id_area, area.name_area, activos.id_rfid, activos.nombre_activo, responsable.nombre, responsable.apellido, responsable.cargo FROM activos, responsable, area WHERE activos.id_responsable = responsable.id and activos.id_area = area.id AND activos.id_rfid = ?", [req.params.id]
+        );
+        res.json(result[0]);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
