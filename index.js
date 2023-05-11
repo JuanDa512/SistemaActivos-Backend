@@ -10,6 +10,7 @@ import personalRoutes from './Routes/personal.routes.js'
 import userRoutes from './Routes/users.routes.js'
 
 import monitoreoRoutes from './Routes/monitoreo.routes.js'
+import depreciacionRoutes from './Routes/depreciacion.routes.js'
 
 const app = express(PORT);
 
@@ -22,6 +23,7 @@ app.use(areaRoutes)
 app.use(personalRoutes)
 app.use(userRoutes)
 app.use(monitoreoRoutes)
+app.use(depreciacionRoutes)
 
 
 app.listen(PORT)
