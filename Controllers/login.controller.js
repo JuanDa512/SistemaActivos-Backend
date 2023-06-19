@@ -1,13 +1,10 @@
-import { pool } from "../DataAccess/db.js"
+import { loginServices } from "../services/login.services.js";
 
 export const login = async (req, res) => {
     try {
-        const [result] = await pool.query(
-            "SELECT * FROM usuarios WHERE username = ? AND password = ?", [
-                req.body.username,
-                req.body.password
-            ]
-        );
+        const username = req.body.username;
+        const password = req.body.password;
+        const result = await loginServices(username, password)
         res.json(result)
     } catch (error) {
         return res.status(500).json({ message: error.message });

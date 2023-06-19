@@ -1,10 +1,10 @@
 import { pool } from "../DataAccess/db.js"
+import { getUsersServices, updateUserServices } from "../services/user.services.js";
 
 export const getUsers = async (req, res) => {
     try {
-        const [result] = await pool.query(
-            "SELECT * FROM usuarios WHERE id = ?", [req.params.id]
-        );
+        const id = req.params.id;
+        const result = await getUsersServices(id)
         res.json(result[0])
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -14,11 +14,9 @@ export const getUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
     console.log(req.body)
     try {
-        const [result] = await pool.query(
-            "UPDATE usuarios SET ? WHERE id = ?", [
-                req.body,
-                req.params.id        
-        ]);
+        const info = req.body
+        const id = req.params.id
+        const result = await updateUserServices(info, id)
     
         if (result.affectedRows === 0) {
             return res.status(404).json({ Message: "Activo no Encontrado" });

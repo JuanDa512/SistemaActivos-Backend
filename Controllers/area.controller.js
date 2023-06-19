@@ -1,10 +1,8 @@
-import { pool } from "../DataAccess/db.js"
+import { getAreaServices, getAreasServices } from "../services/area.services.js";
 
 export const getAreas = async (req, res) => {
     try {
-        const [result] = await pool.query(
-            "SELECT * FROM area;"
-        );
+        const result = await getAreasServices()
         res.json(result)
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -12,9 +10,8 @@ export const getAreas = async (req, res) => {
 }
 export const getArea = async (req, res) => {
     try {
-        const [result] = await pool.query(
-            "SELECT * FROM area WHERE id = ?", [req.params.id]
-        );
+        const id = req.params.id;
+        const result = await getAreaServices(id)
     
         if (result.length === 0) {
             return res.status(404).json({ Message: "Area no Encontrado" });
